@@ -121,11 +121,11 @@ ASGI_APPLICATION = "config.asgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": config("DB_PASSWORD"),
+        "NAME": config("DB_NAME", default="django_sms_data"),
+        "USER": config("DB_USER", default="postgres"),
+        "PASSWORD": config("DB_PASSWORD", default="test"),
         "HOST": config("DB_HOST", default="localhost"),
-        "PORT": config("DB_PORT", default=5432),
+        "PORT": config("DB_PORT", default=5432, cast=int),
     }
 }
 
@@ -191,10 +191,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"  # Gmail as the email host, but you can change it
-EMAIL_PORT = config("EMAIL_PORT", default=587)
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config("USER_EMAIL")
-EMAIL_HOST_PASSWORD = config("USER_PASSWORD")
+EMAIL_HOST_USER = "redhat381@gmail.com"
+EMAIL_HOST_PASSWORD = "Hatb7274+"
+
 
 # crispy config
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
